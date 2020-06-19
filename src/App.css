@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  outline: none  !important;
 }
 
 body {
@@ -46,7 +47,7 @@ body {
   cursor: pointer;
 }
 
-.repo-title{
+.repo-title {
   font-size: 1.2rem;
   margin: 0.5rem;
   text-align: center;
@@ -54,9 +55,72 @@ body {
   color: #fb5870;
 }
 
-.repo-detail{
+.repo-detail {
   margin: 0.4rem;
   text-align: center;
   text-transform: capitalize;
   font-size: 1.1rem;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.nav-link {
+  text-decoration: none !important;
+  margin: 0 0.5rem;
+  color: black;
+}
+
+.card {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
+  margin: 2rem auto;
+  border-radius: 20px;
+  transition: all 0.3s !important;
+  /* flex-wrap: wrap; */
+}
+
+.card > img {
+  width: 25% !important;
+  /* margin: 1rem; */
+  border-radius: 50% !important;
+}
+
+.card > h3 {
+  text-transform: capitalize;
+  padding: 1rem;
+}
+
+.form-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:1.5rem
+}
+.form-group > input{
+  padding: 0.7rem;
+  border-radius: 20px;
+  margin:  0 0.5rem;
+  border: 2px solid grey;
+  
+}
+
+.button{
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  outline: none !important;
+  cursor: pointer;
+  color: white;
+  border: none !important;
+  background-color: black;
+
+}
+
+.transition > *{
+  
 }

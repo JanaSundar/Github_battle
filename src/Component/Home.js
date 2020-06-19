@@ -8,9 +8,7 @@ const languages = ["All", "JavaScript", "Java", "Ruby", "Python"];
 const url = (lang) =>
   `https://api.github.com/search/repositories?q=stars:>1+language:${lang}&sort=stars&order=desc&type=Repositories`;
 
-function Home() {
-  const [lang, setLang] = useState(languages[0]);
-
+function Repo({ lang }) {
   const fetchUrl = (...args) => axios.get(...args).then((res) => res.data);
 
   const { data, error } = useSwr(url(lang), fetchUrl);
@@ -20,9 +18,22 @@ function Home() {
   }
 
   if (!data) {
-    return <h1>loading ...</h1>;
+    return <h1 className="text-center">loading ...</h1>;
   }
 
+  return (
+    <>
+      <div className="grid">
+        {data.items.map((repo, index) => (
+          <Repos repo={repo} key={index} id={index} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+function Home() {
+  const [lang, setLang] = useState(languages[0]);
   return (
     <>
       <ul className="flex">
@@ -33,11 +44,7 @@ function Home() {
         ))}
       </ul>
 
-      <div className="grid">
-        {data.items.map((repo, index) => (
-          <Repos repo={repo} key={index} id={index} />
-        ))}
-      </div>
+      <Repo lang={lang} />
     </>
   );
 }
