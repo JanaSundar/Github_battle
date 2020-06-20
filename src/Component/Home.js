@@ -18,7 +18,15 @@ function Repo({ lang }) {
   }
 
   if (!data) {
-    return <h1 className="text-center">loading ...</h1>;
+    return (
+      <div className="text-center">
+        <div className="bouncing-loader">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -37,9 +45,13 @@ function Home() {
   return (
     <>
       <ul className="flex">
-        {languages.map((lang, ind) => (
-          <li onClick={() => setLang(lang)} key={ind}>
-            {lang}
+        {languages.map((lng, ind) => (
+          <li
+            onClick={() => setLang(lng)}
+            key={ind}
+            className={`lang ${lang === lng ? "active" : ""}`}
+          >
+            {lng}
           </li>
         ))}
       </ul>

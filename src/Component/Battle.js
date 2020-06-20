@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-function FormComponent({ count }) {
+function FormComponent({ count, setUrl }) {
   const [user, setUser] = useState("");
   const [person, setPerson] = useState({
     name: "",
-    url: "",
     avatar_url: "",
   });
 
@@ -16,8 +15,8 @@ function FormComponent({ count }) {
     setPerson({
       name,
       avatar_url,
-      url,
     });
+    setUrl((prev) => [...prev, url]);
     count((prev) => prev + 1);
   };
   return (
@@ -47,13 +46,24 @@ function FormComponent({ count }) {
 
 function Battle() {
   const [count, setCount] = useState(0);
+  const [url, setUrl] = useState([]);
+
+  const getBattle = () => {
+    console.log(url);
+  };
+
   return (
     <>
-      <FormComponent count={setCount} />
-      <FormComponent count={setCount} />
+      <h2 className="text-center m-2">Players Battle</h2>
+      <div className="battle">
+        <FormComponent count={setCount} setUrl={setUrl} />
+        <FormComponent count={setCount} setUrl={setUrl} />
+      </div>
       {count === 2 && (
-        <div className="text-center">
-          <button className="button">Battle</button>
+        <div className="text-center ">
+          <button className="button btn-violet" onClick={getBattle}>
+            Battle
+          </button>
         </div>
       )}
     </>
