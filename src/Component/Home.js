@@ -14,7 +14,7 @@ function Repo({ lang }) {
   const { data, error } = useSwr(url(lang), fetchUrl);
 
   if (error) {
-    return <h1>error occured</h1>;
+    return <h1 className="text-center">Error occured</h1>;
   }
 
   if (!data) {

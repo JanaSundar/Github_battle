@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function FormComponent({ count, setUrl }) {
   const [user, setUser] = useState("");
@@ -10,14 +11,22 @@ function FormComponent({ count, setUrl }) {
 
   const submit = async (e) => {
     e.preventDefault();
-    const gitImg = await Axios.get(`https://api.github.com/users/${user}`);
-    const { name, avatar_url, url } = await gitImg.data;
-    setPerson({
-      name,
-      avatar_url,
-    });
-    setUrl((prev) => [...prev, url]);
-    count((prev) => prev + 1);
+    try {
+      const gitImg = await Axios.get(`https://api.github.com/users/${user}`);
+      const { name, avatar_url, url } = await gitImg.data;
+      setPerson({
+        name,
+        avatar_url,
+      });
+      setUrl((prev) => [...prev, url]);
+      count((prev) => prev + 1);
+    } catch (err) {
+      if (err && err.response && err.response.data) {
+        alert(err.response.data.message);
+      } else {
+        alert("Enter Valid Name");
+      }
+    }
   };
   return (
     <>
@@ -26,6 +35,7 @@ function FormComponent({ count, setUrl }) {
           <form onSubmit={submit} className="form-group">
             <input
               type="text"
+              placeholder="Enter github username"
               onChange={(e) => setUser(e.target.value)}
               required
             />
@@ -48,8 +58,12 @@ function Battle() {
   const [count, setCount] = useState(0);
   const [url, setUrl] = useState([]);
 
+  const history = useHistory();
+
   const getBattle = () => {
-    console.log(url);
+    history.push("/result", {
+      url,
+    });
   };
 
   return (
@@ -59,6 +73,7 @@ function Battle() {
         <FormComponent count={setCount} setUrl={setUrl} />
         <FormComponent count={setCount} setUrl={setUrl} />
       </div>
+
       {count === 2 && (
         <div className="text-center ">
           <button className="button btn-violet" onClick={getBattle}>

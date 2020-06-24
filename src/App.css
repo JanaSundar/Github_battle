@@ -22,6 +22,7 @@ body {
   align-items: center;
   gap: 2rem;
   padding: 2rem;
+  justify-items: center;
   margin: 0 auto !important;
 }
 
@@ -44,6 +45,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100% !important;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
 .flex > li {
@@ -58,6 +69,11 @@ body {
   text-align: center;
   text-transform: uppercase;
   color: #fb5870;
+}
+
+.c-pink {
+  color: #fb5870;
+  font-size: 1.3rem !important;
 }
 
 .repo-title > a {
@@ -80,6 +96,7 @@ body {
   text-decoration: none !important;
   margin: 0 0.5rem;
   color: white;
+  font-size: 1.2rem;
 }
 
 .card {
@@ -133,12 +150,21 @@ body {
   box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.3);
 }
 
+.nav-link-active {
+  font-size: 1.4rem !important;
+  color: #ee4266 !important;
+}
+
 .m-2 {
   margin: 2rem;
 }
 
 .lang:not(.active):hover {
   color: #fb5870;
+}
+
+.lang {
+  font-size: 1.3rem;
 }
 
 .active {
@@ -174,7 +200,7 @@ body {
   animation-delay: 0.4s;
 }
 
-.battle{
+.battle {
   display: flex;
   flex: 1;
   justify-content: center;
@@ -182,7 +208,34 @@ body {
   align-items: center;
 }
 
-.btn-violet{
+.btn-violet {
   background-color: #2d6cdf !important;
   /* color: black; */
+}
+
+.br-title {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 550px) {
+  .lang {
+    font-size: 0.9rem !important;
+  }
+  .repo {
+    width: 220px !important;
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .flex > li {
+    margin: 0.5rem;
+  }
+  .nav-link {
+    font-size: 1rem;
+  }
+  .nav-link-active {
+    font-size: 1.2rem !important;
+  }
 }
